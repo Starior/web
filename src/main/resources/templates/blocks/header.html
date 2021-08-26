@@ -1,0 +1,39 @@
+<div th:fragment="header">
+  <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+      <span class="fs-4">My Collections List</span>
+    </a>
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+      <!--<div sec:authorize="isAuthenticated()">
+        <a class="me-3 py-2 text-dark text-decoration-none">
+          <div sec:authentication="name"></div>
+        </a>
+        <a class="me-3 py-2 text-dark text-decoration-none">
+          <div sec:authentication="principal.authorities"></div>
+        </a>
+      </div>-->
+
+<!--      <div sec:authorize="hasRole('ROLE_USER')">1</div>
+      <div sec:authorize="hasRole('ROLE_ADMIN')">2</div>
+      <div sec:authorize="hasAuthority('ROLE_ADMIN')">3</div>
+      <div sec:authorize="hasAuthority('ROLE_USER')">4</div>
+      -->
+
+      <a sec:authorize="hasAuthority('ROLE_ADMIN')"
+         class="me-3 py-2 text-dark text-decoration-none" href="/admin">Admin panel</a>
+      <a sec:authorize="hasAuthority('ROLE_USER')"
+         class="me-3 py-2 text-dark text-decoration-none">User</a>
+      <a sec:authorize="isAuthenticated()"
+               class="me-3 py-2 text-dark text-decoration-none">[[${#request.userPrincipal.principal.fullName}]]</a>
+      <a sec:authorize="isAuthenticated()" class="me-3 py-2 text-dark text-decoration-none"
+         href="/logout">Sign Out</a>
+      <a sec:authorize="!isAuthenticated()" class="me-3 py-2 text-dark text-decoration-none"
+         href="/login">Login</a>
+      <a sec:authorize="!isAuthenticated()" class="me-3 py-2 text-dark text-decoration-none"
+         href="/register">Sign Up</a>
+      <a class="me-3 py-2 text-dark text-decoration-none" href="/site">Site</a>
+      <a class="me-3 py-2 text-dark text-decoration-none" href="/site/add">Add post</a>
+      <a class="me-3 py-2 text-dark text-decoration-none" href="/about">About</a>
+    </nav>
+  </div>
+</div>
